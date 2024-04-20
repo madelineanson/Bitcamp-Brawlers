@@ -1,8 +1,6 @@
 import { useState } from 'react'
-// import droughtDark from './assets/SVG/drought-dark.svg'
-// import droughtLight from './assets/SVG/drought-light.svg'
-// import earthquakeDark from './assets/SVG/earthquale-dark.svg'
 import './App.css'
+import Footer from './Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,8 +12,20 @@ function App() {
           <div className="flood"></div>
           <div className="hurricane"></div>
         </div>
-        
 
+    <div className="fannie-mae-logo">
+      <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
+    </div>
+
+    <div className="main-content">
+      < p>
+          <img src="\src\assets\US-Heatmap-PLACEHOLDER.png"></img>
+        </p>
+        <Footer></Footer>
+        <p>
+        Fannie Mae Logo® is a registered trademark of Fannie Mae.
+      </p>
+    </div>
 
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
@@ -39,8 +49,13 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
+      </p> */}
+
+
+
+      
     </>
+
   )
 }
 
