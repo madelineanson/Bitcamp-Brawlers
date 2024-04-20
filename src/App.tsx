@@ -3,9 +3,9 @@ import './App.css'
 import Footer from './Footer'
 import Map from './Map'
 
+
 function App() {
   const [disaster, setDisaster] = useState<"fire" | "flood" | "hurricane">("fire")
-
   return (
     <>
         
