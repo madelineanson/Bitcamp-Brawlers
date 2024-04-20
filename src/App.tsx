@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
 import Footer from './Footer'
 
@@ -9,7 +9,20 @@ function App() {
 
   return (
     <>
-      <div>
+    <div className="fannie-mae-logo">
+      <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
+    </div>
+
+    <div className="main-content">
+      < p>
+          <img src="\src\assets\US-Heatmap-PLACEHOLDER.png"></img>
+        </p>
+        <Footer></Footer>
+        <p>
+        Fannie Mae Logo® is a registered trademark of Fannie Mae.
+      </p>
+    </div>
+      {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -28,8 +41,11 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
-      <Footer></Footer>
+      </p> */}
+
+
+
+      
     </>
 
   )
