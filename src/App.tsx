@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import droughtDark from './assets/SVG/drought-dark.svg'
+// import droughtLight from './assets/SVG/drought-light.svg'
+// import earthquakeDark from './assets/SVG/earthquale-dark.svg'
 import './App.css'
 
 function App() {
@@ -8,14 +9,25 @@ function App() {
 
   return (
     <>
-      <div>
+        <div className="parent">
+          <div className="fire"></div>
+          <div className="flood"></div>
+          <div className="hurricane"></div>
+        </div>
+        
+
+
+      {/* <div>
         <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+          <img src={earthquakeDark} className="logo earthquake" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={droughtDark} className="logo drought" alt="React logo" />
         </a>
-      </div>
+        <a href="https://react.dev" target="_blank">
+          <img src={droughtLight} className="logo react" alt="React logo" />
+        </a>
+      </div> */}
       <h1>hi</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
