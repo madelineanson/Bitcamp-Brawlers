@@ -4,16 +4,10 @@
   width: 100%;
 }
 
-.map-buttons {
+.parent {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
-
-/*adjust margin or padding for the buttons themselves */
-.map-buttons button {
-  margin: 0 10px;
-}
-
 
 .fire, .flood, .hurricane {
   margin: 0 10px; /* Adjust the value as needed */
@@ -106,11 +100,5 @@
 }
 
 .main-content {
-  margin-top: 5%;
-}
-
-.maps {
-  display: flex;
-  justify-content: center; /* horizontally center */
-  align-items: center; /* vertically center */
+  margin-top: 5%
 }
