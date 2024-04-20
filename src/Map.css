@@ -1,0 +1,43 @@
+
+
+path.rsm-geography:focus {
+    outline: none;
+}
+
+.fire-state {
+    stroke: #fff;
+   
+}
+
+.fire-state:hover{
+    fill: lightblue;
+    stroke: #fff;
+    cursor: pointer;
+}
+
+
+.hurricane-state {
+    stroke: #fff;
+   
+}
+
+.hurricane-state:hover{
+    fill: lightblue;
+    stroke: #fff;
+    cursor: pointer;
+}
+
+.flood-state {
+    stroke: #fff;
+   
+}
+
+.flood-state:hover{
+    fill: lightblue;
+    stroke: #fff;
+    cursor: pointer;
+}
+
+.map-container {
+    width: 90vw;
+}
