@@ -1,6 +1,4 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
 import Footer from './Footer'
 
@@ -9,6 +7,12 @@ function App() {
 
   return (
     <>
+        <div className="parent">
+          <div className="fire"></div>
+          <div className="flood"></div>
+          <div className="hurricane"></div>
+        </div>
+
     <div className="fannie-mae-logo">
       <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
     </div>
@@ -22,14 +26,18 @@ function App() {
         Fannie Mae Logo® is a registered trademark of Fannie Mae.
       </p>
     </div>
+
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+          <img src={earthquakeDark} className="logo earthquake" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={droughtDark} className="logo drought" alt="React logo" />
         </a>
-      </div>
+        <a href="https://react.dev" target="_blank">
+          <img src={droughtLight} className="logo react" alt="React logo" />
+        </a>
+      </div> */}
       <h1>hi</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
