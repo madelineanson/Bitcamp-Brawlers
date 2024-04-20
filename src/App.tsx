@@ -14,11 +14,18 @@ function App() {
       <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
     </div>
 
-    <div className="map-buttons">
-          <div onClick={() => setDisaster("fire")} className="fire"></div>
-          <div onClick={() => setDisaster("flood")} className="flood"></div>
-          <div onClick={() => setDisaster("hurricane")} className="hurricane"></div>
-    </div>
+    <div className="button-container">
+  <div className="pushable pushable-fire">
+    <div onClick={() => setDisaster("fire")} className="front front-fire">Fire</div>
+  </div>
+  <div className="pushable pushable-flood">
+    <div onClick={() => setDisaster("flood")} className="front front-flood">Flood</div>
+  </div>
+  <div className="pushable pushable-hurricane">
+    <div onClick={() => setDisaster("hurricane")} className="front front-hurricane">Hurricane</div>
+  </div>
+</div>
+    
 
     <div className="main-content">
       <div className="maps">
