@@ -187,9 +187,7 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
   return (
     <div className="map-container">
       
-        {!isOpen? <div className="tooltip">{hovered && "" + hovered}</div>: 
-          <button onClick={() => setIsOpen(false)}>Close Panel</button>
-          }
+        <div className="tooltip">{hovered && "" + hovered}</div>
       
       <ComposableMap projection="geoAlbersUsa">
         <Geographies geography={geoUrl}>
@@ -212,7 +210,9 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
           )}
         </Geographies>
       </ComposableMap>
-      {isOpen? <SideBar state={state}></SideBar> : null }
+    
+        <button onClick={() => setIsOpen(false)} className={"sidebar-button button-" + (isOpen? "open" : "closed")}>Close Panel</button>
+        <SideBar isOpen={isOpen} state={state}></SideBar> 
       
     </div>
     

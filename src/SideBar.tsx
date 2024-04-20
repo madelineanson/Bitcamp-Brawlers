@@ -67,12 +67,12 @@ const data = {
   ],
 };
 
-function SideBar({ state = "Maryland" }: { state: string}) {
+function SideBar({ state = "Maryland", isOpen }: { state: string, isOpen:boolean}) {
     const stateCode = stateAbbreviations[state]
     const listIncidents = data.list
     return (
         <>
-        <div className="sidebar">
+        <div className={"sidebar sidebar-" + (isOpen? "open" : "closed")}>
             <h2>Results for {state} </h2>
             {listIncidents.map((incident) => {
                 return (

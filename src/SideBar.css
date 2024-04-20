@@ -3,7 +3,26 @@
     padding: 1rem;
     text-align: center;
     border-left: 1px solid #ccc;
+    position: absolute;
+    top: 0; 
+    right: 0px;
+    z-index: 3;
+    background-color: white;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    max-height: 100vmax; /* Set maximum height for the sidebar */
+    overflow-y: auto; /* Make sidebar content scrollable */
 }
+
+.sidebar-closed{
+    transform: translateX(400px);
+    visibility: hidden;
+}
+
+.sidebar-open {
+    display: block;
+    transform: translateX(0px);
+    visibility: visible;
+  }
 
 .sidebar h2{
     padding: 0.5rem;
@@ -14,3 +33,23 @@
     padding: 0.5rem;
     font-size: 1rem;
 }
+
+.sidebar-button{
+    border: solid;
+    position: absolute;
+    top: 300px; 
+    right: 400px;
+    z-index: 4;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.button-closed{
+    transform: translateX(400px);
+    visibility: hidden;
+}
+
+.button-open {
+    display: block;
+    transform: translateX(0px);
+    visibility: visible;
+  }
