@@ -1,6 +1,4 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
 import Footer from './Footer'
 
@@ -9,6 +7,12 @@ function App() {
 
   return (
     <>
+        <div className="parent">
+          <div className="fire"></div>
+          <div className="flood"></div>
+          <div className="hurricane"></div>
+        </div>
+
     <div className="fannie-mae-logo">
       <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
     </div>

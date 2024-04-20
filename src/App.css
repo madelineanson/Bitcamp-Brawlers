@@ -4,33 +4,80 @@
   width: 100%;
 }
 
-.logo {
+.parent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fire, .flood, .hurricane {
+  margin: 0 10px; /* Adjust the value as needed */
+}
+
+.fire {
+  width: 174px;
+  height: 64px; 
+  /* margin: 50px; */
+  background-image: url('./assets/SVG/fire-dark.svg');
+  /* background-size: cover; */
+  /* transition: background-image 0.3s ease-in-out; */
+}
+
+.fire:hover {
+  background-image: url('./assets/SVG/fire-light.svg');
+}
+
+.flood {
+  width: 174px;
+  height: 64px; 
+  background-image: url('./assets/SVG/flood-dark.svg');
+}
+
+.flood:hover {
+  background-image: url('./assets/SVG/flood-light.svg');
+}
+
+.hurricane {
+  width: 174px;
+  height: 64px; 
+  background-image: url('./assets/SVG/hurricane-dark.svg');
+}
+
+.hurricane:hover {
+  background-image: url('./assets/SVG/hurricane-light.svg');
+}
+
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* .logo.drought:hover {
+  filter: drop-shadow(0 0 2em #646cffaa); 
+} */
+
+/* #Layer_2 .cls-10:hover {
+  fill: #888
 }
 
-@keyframes logo-spin {
+.logo.earthquake:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}  */
+
+/* @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
+} */
 
 .card {
   padding: 2em;
