@@ -8,7 +8,6 @@ function App() {
 
   return (
     <>
-        
 
     <div className="fannie-mae-logo">
       <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
