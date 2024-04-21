@@ -1,33 +1,41 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Footer from './Footer'
+import Map from './Map'
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [disaster, setDisaster] = useState<"fire" | "flood" | "hurricane">("fire")
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        
+
+    <div className="fannie-mae-logo">
+      <img src="\src\assets\fannie-mae-logo-dark-blue.png"></img>
+    </div>
+
+    <div className="button-container">
+  <div className="pushable pushable-fire">
+    <div onClick={() => setDisaster("fire")} className="front front-fire">Fire</div>
+  </div>
+  <div className="pushable pushable-flood">
+    <div onClick={() => setDisaster("flood")} className="front front-flood">Flood</div>
+  </div>
+  <div className="pushable pushable-hurricane">
+    <div onClick={() => setDisaster("hurricane")} className="front front-hurricane">Hurricane</div>
+  </div>
+</div>
+    
+
+    <div className="main-content">
+      <div className="maps">
+        <Map disaster={disaster}></Map>
       </div>
-      <h1>hi</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <Footer></Footer>
+      <p>
+        Fannie Mae Logo® is a registered trademark of Fannie Mae.
       </p>
+    </div>
     </>
   )
 }
