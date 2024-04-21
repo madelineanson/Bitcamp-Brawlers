@@ -3,30 +3,19 @@ import {useEffect, useState} from 'react'
 
 import { Chart } from "react-google-charts";
 
-export const data = [
-    ["Date", "Texas"],
-    [1, 2.4],
-    [2, 2.7],
-    [3, 3.5]
-];
-
-export const options = {
-    chart: {
-        title: "Mortgage Delinquency Rates",
-        subtitle: "in Percent (%)"
-    }
-};
-
 function Graph({state="MD", date="2015-08"}) {
 
-    const [dataList, setDataList ] = useState([])
+    const [dataList, setDataList ] = useState([]);
+    const [wallistTest, setWallisTest] = useState([])
 
     async function getData() {
         let link = "http://127.0.0.1:8000/mortgages/" + state + "/" + date
         let response = await fetch(link)
         let result = await response.json()
+        result = JSON.parse(result)
         console.log(result)
         setDataList(result)
+        setWallisTest(data)
     }
 
     useEffect(() => {
@@ -34,12 +23,24 @@ function Graph({state="MD", date="2015-08"}) {
     }, [])
 
     return (
+
         <Chart
-            chartType="Line"
+            chartType="LineChart"
             width="500px"
             height="400px"
             data={dataList}
-            options={options}
+            options={{
+                chart: {
+                    title: "Mortgage Delinquency Rates",
+                    subtitle: "in Percent (%)",
+                    pointSize: 30,
+                    series: {
+                        1: {
+                          pointSize: 20
+                        }
+                      }
+                }
+            }}
         />
     );
 }
