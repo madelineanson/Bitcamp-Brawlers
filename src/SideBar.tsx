@@ -1,6 +1,7 @@
 import "./SideBar.css";
 import { useState, useEffect } from 'react'
 import Graph from './Graph'
+import Foreclosure from './Foreclosure'
 
 const stateAbbreviations = {
   Alabama: "AL",
@@ -93,7 +94,14 @@ function SideBar({ state, isOpen, listIncidents}: { disaster: "flood" | "hurrica
         <div id="top-sidebar" className={"sidebar sidebar-" + (isOpen? "open " : "closed ")}>
             {listIncidents.length > 0? <h2>Results for {state} </h2>: <h2>No results for {state}</h2>}
 
-            {isShowGraph? <Graph key={selectedDate} date={selectedDate} state={stateAbbreviations[state]}></Graph>: null}
+
+            {isShowGraph? <Graph key={selectedDate} date={selectedDate} state={stateAbbreviations[state]}></Graph>
+                            
+            : null}
+                            
+                        
+            {selectedDate !==  "" ? (state == "Georgia"?<Foreclosure date={selectedDate}></Foreclosure> : null) : null}
+
             {filterDuplicatesByDate(listIncidents).sort((a, b)=>{return new Date(b.date) - new Date(a.date)}).map((incident, index) => {
                 return (
                     <div>
