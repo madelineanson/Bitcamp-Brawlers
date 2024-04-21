@@ -7,20 +7,25 @@ function Foreclosure({state="Atlanta", date}) {
 
     const [dataList, setDataList ] = useState([])
     const [wallisTest, setWallisTest] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
-    async function getData() {
-        const date_split = date.split("-")
-        console.log(date_split)
-        const new_date = date_split[0] + "-" + date_split[1]
-        console.log(new_date)
-        let link = "http://127.0.0.1:8000/foreclosures/" + state + "/" + new_date
-        let response = await fetch(link)
-        let result = await response.json() 
-        result = JSON.parse(result)
-        setDataList(result)
-    }
+
 
     useEffect(() => {
+        async function getData() {
+            setIsLoading(true)
+            const date_split = date.split("-")
+            console.log(date_split)
+            const new_date = date_split[0] + "-" + date_split[1]
+            console.log(new_date)
+            let link = "http://127.0.0.1:8000/foreclosures/" + state + "/" + new_date
+            let response = await fetch(link)
+            let result = await response.json() 
+            result = JSON.parse(result)
+            setDataList(result)
+            setIsLoading(false)
+        }
+
         getData()
     }, [])
 
@@ -31,8 +36,9 @@ function Foreclosure({state="Atlanta", date}) {
     }
 
     return (
+ 
         <div className="modal">
-            <div className="modal-content">
+            {isLoading? <div className='spinner'></div>: (<div className="modal-content">
                 <Chart
                     chartType="Line"
                     width="700px"
@@ -53,9 +59,10 @@ function Foreclosure({state="Atlanta", date}) {
                     
                     }}
                 />
-            </div>
+            </div>)}
+            
         </div>
-        
+
     );
 }
 
