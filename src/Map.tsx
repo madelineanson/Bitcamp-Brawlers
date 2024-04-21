@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import SideBar from './SideBar'
 import "./Map.css";
 
 
@@ -164,10 +165,12 @@ function getColor(disasters: number, disaster: "fire" | "flood" | "hurricane") {
 }
 
 const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurricane" }) => {
+  const [hovered, setHovered] = useState("")
+  const [state, setState] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
+
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
-
   let data = []
-
   if (disaster == "hurricane") {
     data = hurricane_data
   } else if (disaster == "fire") {
@@ -176,8 +179,16 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
     data = flood_data
   }
 
+  function handleClick(state:string) {
+    setState(state)
+    setIsOpen(true)
+  }
+
   return (
     <div className="map-container">
+      
+        <div className="tooltip">{hovered && "" + hovered}</div>
+      
       <ComposableMap projection="geoAlbersUsa">
         <Geographies geography={geoUrl}>
           {({ geographies }) => (
@@ -185,21 +196,26 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
               {/* Render each state */}
               {geographies.map((geo) => (
                 <Geography
-                  onClick={() => console.log()}
+                  onClick={() => handleClick(geo.properties.name)}
                   key={geo.rsmKey}
                   geography={geo}
                   className={disaster + "-state"}
                   fill={getColor(data[stateAbbreviations[geo.properties.name]], disaster)}
                   strokeWidth={0.5}
-                  //   onMouseEnter={() => setHoveredState(geo.properties.name)}
-                  //   onMouseLeave={() => setHoveredState(null)}
+                  onMouseEnter={() => setHovered(geo.properties.name)}
+                  onMouseLeave={() => setHovered(null)}
                 />
               ))}
             </>
           )}
         </Geographies>
       </ComposableMap>
+    
+        <button onClick={() => setIsOpen(false)} className={"sidebar-button button-" + (isOpen? "open" : "closed")}>Close Panel</button>
+        <SideBar isOpen={isOpen} state={state}></SideBar> 
+      
     </div>
+    
   );
 };
 

@@ -4,10 +4,16 @@
   width: 100%;
 }
 
-.parent {
+.map-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
+
+/*adjust margin or padding for the buttons themselves */
+.map-buttons button {
+  margin: 0 10px;
+}
+
 
 .fire, .flood, .hurricane {
   margin: 0 10px; /* Adjust the value as needed */
@@ -100,5 +106,67 @@
 }
 
 .main-content {
-  margin-top: 5%
+  margin-top: 5%;
+}
+
+.maps {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  align-items: center; /* vertically center */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pushable {
+  position: relative;
+  border-radius: 12px; /* Add border-radius to all pushable elements */
+  width: calc(33.33% - 10px); /* Set width for each button, considering spacing */
+}
+
+.front {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 12px 42px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transform: translateY(-6px);
+  transition: transform 0.1s ease-in-out;
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+}
+
+.pushable-fire {
+  background: hsl(340, 97%, 13%);
+}
+
+.pushable-flood {
+  background: hsl(249, 92%, 15%);
+}
+
+.pushable-hurricane {
+  background: hsl(282, 93%, 16%);
+}
+
+.front-fire {
+  background: hsl(0, 72%, 60%);
+  color: white;
+}
+
+.front-flood {
+  background: hsl(239, 59%, 65%);
+  color: white;
+}
+
+.front-hurricane {
+  background: hsl(288, 27%, 40%);
+  color: white;
 }
