@@ -63,6 +63,7 @@ function SideBar({ state, isOpen, listIncidents}: { disaster: "flood" | "hurrica
     useEffect( () => {
         const sidebar = document.getElementById("top-sidebar")
         sidebar.scroll({top:0,behavior:'smooth'})
+        window.scroll({top:0,behavior:'smooth'})
     },[])
 
 
