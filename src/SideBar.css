@@ -1,5 +1,5 @@
 .sidebar {
-    width: 400px;
+    width: 700px;
     padding: 1rem;
     text-align: center;
     border-left: 1px solid #ccc;
@@ -39,13 +39,13 @@
     border: solid;
     position: absolute;
     top: 300px; 
-    right: 400px;
+    right: 700px;
     z-index: 4;
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .button-closed{
-    transform: translateX(400px);
+    transform: translateX(700px);
     visibility: hidden;
 }
 

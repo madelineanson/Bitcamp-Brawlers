@@ -1,6 +1,6 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
-
+import './Graph.css'
 import { Chart } from "react-google-charts";
 
 function Graph({state, date}) {
@@ -15,10 +15,18 @@ function Graph({state, date}) {
         result = JSON.parse(result)
         console.log(result)
         setDataList(result)
+
         let link2 = "http://127.0.0.1:8000/kruskal/" + state + "/" + date
-        let response2 = await fetch(link2)
-        let data = await response2.json()
-        setWallisTest(data)
+        try {
+            let response2 = await fetch(link2)
+            let data = await response2.json()
+            setWallisTest(data)
+        } catch {
+            setWallisTest([])
+        }
+
+
+        
     }
 
     useEffect(() => {
@@ -28,34 +36,40 @@ function Graph({state, date}) {
     const p_val: number = wallisTest[1]
 
     const getColor = () => {
-        return p_val <= 0.05 ? 'red' : 'green'
+        return p_val <= 0.05 ? 'blue' : 'green'
     }
 
     return (
-        <div>
-            <Chart
-                chartType="Line"
-                width="500px"
-                height="400px"
-                data={dataList}
-                options={{
-                    chart: {
-                        title: "Mortgage Delinquency Rates",
-                        subtitle: "in Percent (%)",
-                        pointSize: 30,
-                        series: {
-                            1: {
-                            pointSize: 20
-                            }
+        <div className="modal">
+            <div className="modal-content">
+                <Chart
+                    chartType="Line"
+                    width="700px"
+                    height="400px"
+                    data={dataList}
+                    options={{
+                        chart: {
+                            title: "Mortgage Delinquency Rates",
+                            subtitle: "in Percent (%)",
+                            pointSize: 30,
+                            series: {
+                                1: {
+                                pointSize: 20
+                                }
+                            },
+                        
                         }
-                    }
-                }}
-            />
+                    
+                    }}
+                />
+            </div>
             <h3 style={{ color: getColor() }}>
-                {wallisTest !== null ? (p_val <= 0.05 ? 
-                    `Based on a kruskal wallis test, there IS a significant difference in \n mortgage delinquency rates between the period of a \
-                    year before and after the disaster. p-value: ${p_val}}` : `No significant difference calculated in mortgage \
-                    delinquency rates before and after the disaster. p-value: ${p_val}`) : 'Loading...'}
+
+                
+                {wallisTest.length != 0 ? (p_val <= 0.05 ? 
+                    `Kruskal-wallis test shows significant difference in disaster event and delinquency rates. p-value: ${p_val}` : `Kruskal-wallis test shows no significant difference calculated in mortgage \
+                    delinquency rates before and after the disaster. p-value: ${p_val}`) : 'Not enough data to perform tests'}
+                    
             </h3>
         </div>
         

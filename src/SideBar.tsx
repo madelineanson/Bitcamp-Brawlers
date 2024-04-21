@@ -1,6 +1,6 @@
 import "./SideBar.css";
-import { useState } from 'react'
-import {useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import Graph from './Graph'
 
 const stateAbbreviations = {
   Alabama: "AL",
@@ -54,34 +54,38 @@ const stateAbbreviations = {
   Wisconsin: "WI",
   Wyoming: "WY",
 };
-const data = {
-  list: [
-    { state: "MD", incidentType: "Flood", date: "2018-05-27" },
-    { state: "MD", incidentType: "Flood", date: "2018-05-27" },
-    { state: "MD", incidentType: "Flood", date: "2016-07-30" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-    { state: "MD", incidentType: "Flood", date: "2011-09-06" },
-  ],
-};
 
 function SideBar({ state, isOpen, listIncidents}: { disaster: "flood" | "hurricane" | "fire",state: string, isOpen:boolean, listIncidents: any []}) {
 
+    const [isShowGraph, setIsShowGraph] = useState(false)
+    const [selectedDate, setSelectedDate] = useState("")
+
+    useEffect( () => {
+        const sidebar = document.getElementById("top-sidebar")
+        sidebar.scroll({top:0,behavior:'smooth'})
+    },[])
+
+
+    function showGraph(date: string) {
+        const sidebar = document.getElementById("top-sidebar")
+        sidebar.scroll({top:0,behavior:'smooth'})
+        const date_split = date.split("-")
+        const  new_date = date_split[0] + "-" + date_split[1]
+        setSelectedDate(new_date)
+        setIsShowGraph(true)
+    }
 
     return (
         <>
-        <div className={"sidebar sidebar-" + (isOpen? "open" : "closed")}>
+        <div id="top-sidebar" className={"sidebar sidebar-" + (isOpen? "open " : "closed ")}>
             {listIncidents.length > 0? <h2>Results for {state} </h2>: <h2>No results for {state}</h2>}
-            
-            {listIncidents.map((incident) => {
+
+            {isShowGraph? <Graph key={selectedDate} date={selectedDate} state={stateAbbreviations[state]}></Graph>: null}
+            {listIncidents.map((incident, index) => {
                 return (
                     <div>
                         <h3>{incident.incidentType} on {incident.date}</h3>
-                        <button>
+                        <button key={index} onClick={() => showGraph(incident.date)}>
                             Show data for event
                         </button>
                     </div>
