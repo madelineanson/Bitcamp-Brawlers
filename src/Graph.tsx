@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 
 import { Chart } from "react-google-charts";
 
-function Graph({state="MD", date="2015-08"}) {
+function Graph({state, date}) {
 
     const [dataList, setDataList ] = useState([]);
     const [wallistTest, setWallisTest] = useState([])
@@ -15,7 +15,7 @@ function Graph({state="MD", date="2015-08"}) {
         result = JSON.parse(result)
         console.log(result)
         setDataList(result)
-        setWallisTest(data)
+        
     }
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function Graph({state="MD", date="2015-08"}) {
     return (
 
         <Chart
-            chartType="LineChart"
+            chartType="Line"
             width="500px"
             height="400px"
             data={dataList}

@@ -164,10 +164,12 @@ function getColor(disasters: number, disaster: "fire" | "flood" | "hurricane") {
   return color;
 }
 
-const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurricane" }) => {
+const Map = ({ disaster = "fire" }: { disaster: "fire" | "flood"| "hurricane" }) => {
   const [hovered, setHovered] = useState("")
+  const [stateName, setStateName] = useState("")
   const [state, setState] = useState("")
   const [isOpen, setIsOpen] = useState(false)
+  const [listIncidents, setListIncidents] = useState({})
 
   const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
   let data = []
@@ -179,7 +181,11 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
     data = flood_data
   }
 
-  function handleClick(state:string) {
+  async function handleClick(state:string) {
+    const response = await fetch("http://127.0.0.1:8000/" + stateAbbreviations[state] + "/" + disaster[0].toUpperCase() + disaster.slice(1))
+    const data = await response.json()
+    console.log(data)
+    setListIncidents(data.list)
     setState(state)
     setIsOpen(true)
   }
@@ -203,7 +209,7 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
                   fill={getColor(data[stateAbbreviations[geo.properties.name]], disaster)}
                   strokeWidth={0.5}
                   onMouseEnter={() => setHovered(geo.properties.name)}
-                  onMouseLeave={() => setHovered(null)}
+                  onMouseLeave={() => setHovered("")}
                 />
               ))}
             </>
@@ -212,7 +218,7 @@ const Map = ({ disaster = "hurricane" }: { disaster: "fire" | "flood"| "hurrican
       </ComposableMap>
     
         <button onClick={() => setIsOpen(false)} className={"sidebar-button button-" + (isOpen? "open" : "closed")}>Close Panel</button>
-        <SideBar isOpen={isOpen} state={state}></SideBar> 
+        {isOpen? <SideBar listIncidents={listIncidents} disaster={disaster} isOpen={isOpen} state={state}></SideBar> : null }
       
     </div>
     
