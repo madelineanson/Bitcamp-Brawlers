@@ -1,4 +1,6 @@
 import "./SideBar.css";
+import { useState } from 'react'
+import {useEffect} from 'react'
 
 const stateAbbreviations = {
   Alabama: "AL",
@@ -67,13 +69,14 @@ const data = {
   ],
 };
 
-function SideBar({ state = "Maryland", isOpen }: { state: string, isOpen:boolean}) {
-    const stateCode = stateAbbreviations[state]
-    const listIncidents = data.list
+function SideBar({ state, isOpen, listIncidents}: { disaster: "flood" | "hurricane" | "fire",state: string, isOpen:boolean, listIncidents: any []}) {
+
+
     return (
         <>
         <div className={"sidebar sidebar-" + (isOpen? "open" : "closed")}>
-            <h2>Results for {state} </h2>
+            {listIncidents.length > 0? <h2>Results for {state} </h2>: <h2>No results for {state}</h2>}
+            
             {listIncidents.map((incident) => {
                 return (
                     <div>

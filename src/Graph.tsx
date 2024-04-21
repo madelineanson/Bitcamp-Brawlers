@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 
 import { Chart } from "react-google-charts";
 
-function Graph({state="MD", date="2015-08"}) {
+function Graph({state, date}) {
 
     const [dataList, setDataList ] = useState([])
     const [wallisTest, setWallisTest] = useState([])
