@@ -69,19 +69,31 @@ function SideBar({ state, isOpen, listIncidents}: { disaster: "flood" | "hurrica
     function showGraph(date: string) {
         const sidebar = document.getElementById("top-sidebar")
         sidebar.scroll({top:0,behavior:'smooth'})
+        window.scroll({top:0,behavior:'smooth'})
         const date_split = date.split("-")
         const  new_date = date_split[0] + "-" + date_split[1]
         setSelectedDate(new_date)
         setIsShowGraph(true)
     }
-
+    function filterDuplicatesByDate(objects) {
+        const uniqueDates = new Set();
+        return objects.filter(obj => {
+            const date = obj.date;
+            if (uniqueDates.has(date)) {
+                return false; // Duplicate found
+            } else {
+                uniqueDates.add(date);
+                return true; // Not a duplicate
+            }
+        });
+    }
     return (
         <>
         <div id="top-sidebar" className={"sidebar sidebar-" + (isOpen? "open " : "closed ")}>
             {listIncidents.length > 0? <h2>Results for {state} </h2>: <h2>No results for {state}</h2>}
 
             {isShowGraph? <Graph key={selectedDate} date={selectedDate} state={stateAbbreviations[state]}></Graph>: null}
-            {listIncidents.sort((a, b)=>{return new Date(b.date) - new Date(a.date)}).map((incident, index) => {
+            {filterDuplicatesByDate(listIncidents).sort((a, b)=>{return new Date(b.date) - new Date(a.date)}).map((incident, index) => {
                 return (
                     <div>
                         <h3>{incident.incidentType} on {incident.date}</h3>
