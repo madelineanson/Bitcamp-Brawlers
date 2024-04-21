@@ -81,7 +81,7 @@ function SideBar({ state, isOpen, listIncidents}: { disaster: "flood" | "hurrica
             {listIncidents.length > 0? <h2>Results for {state} </h2>: <h2>No results for {state}</h2>}
 
             {isShowGraph? <Graph key={selectedDate} date={selectedDate} state={stateAbbreviations[state]}></Graph>: null}
-            {listIncidents.map((incident, index) => {
+            {listIncidents.sort((a, b)=>{return new Date(b.date) - new Date(a.date)}).map((incident, index) => {
                 return (
                     <div>
                         <h3>{incident.incidentType} on {incident.date}</h3>

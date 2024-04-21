@@ -38,7 +38,7 @@
 .sidebar-button{
     border: solid;
     position: absolute;
-    top: 300px; 
+    top: 600px; 
     right: 700px;
     z-index: 4;
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
