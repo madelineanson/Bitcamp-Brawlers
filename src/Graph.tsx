@@ -13,7 +13,6 @@ function Graph({state, date}) {
         let response = await fetch(link)
         let result = await response.json()
         result = JSON.parse(result)
-        console.log(result)
         setDataList(result)
 
         let link2 = "http://127.0.0.1:8000/kruskal/" + state + "/" + date
